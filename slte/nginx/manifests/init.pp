@@ -26,7 +26,7 @@ class nginx {
     group   =>  'root',    
     mode    =>  '0664',
     source  =>  'puppet:///modules/nginx/nginx.conf',
-  }default.conf
+  }
 
   file { 'default.conf':  
     ensure  =>  file,
@@ -37,5 +37,8 @@ class nginx {
     source  =>  'puppet:///modules/nginx/default.conf',
   }
   
-  service { 'nginx'
+  service { 'nginx';
+    ensure  =>  running,
+    enable  =>  true,
+  }
 }
