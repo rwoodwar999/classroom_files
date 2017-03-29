@@ -1,7 +1,7 @@
 class nginx {
   package { 'nginx':
   ensure => present,
-  before  => ['File['nginx.conf'],['File['default.conf'],
+  before  => File['nginx.conf'],File['default.conf'],
   }
 
 file { 'docroot':
