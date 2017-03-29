@@ -18,8 +18,7 @@ file { '/index.html':
   mode => '0664', # allow Puppet to re-write files as needed on Windows
   source => 'puppet:///modules/nginx/index.html',
   }
-  file {'nginx.conf':
-  {
+  file { 'nginx.conf':
     ensure => file,
     path  =>  '/var/www/nginx.conf',
     owner => 'root',
@@ -29,7 +28,6 @@ file { '/index.html':
     }
  
  file {'default.conf':
-  {
     ensure => file,
     path  =>  '/var/www/default.conf'
     owner => 'root',
