@@ -5,6 +5,8 @@ node 'josephoaks.puppetlabs.vm' {
   include system_users::admins
   # Exercise 8.1
   include hosts
+  # Exercise 8.2
+  include nginx
 }
 
 node default {
