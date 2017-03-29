@@ -18,7 +18,7 @@ file { '/index.html':
   mode => '0664', # allow Puppet to re-write files as needed on Windows
   source => 'puppet:///modules/nginx/index.html',
   }
-  file {'ngix.conf'"
+  file {'ngix.conf':
   {
     ensure => file,
     path  =>  '/var/www/ngix.conf',
@@ -28,7 +28,7 @@ file { '/index.html':
     source => 'puppet:///modules/nginx/ngix.conf',
     }
  
- file {'default.conf'"
+ file {'default.conf':
   {
     ensure => file,
     path  =>  '/var/www/default.conf'
