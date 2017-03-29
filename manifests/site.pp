@@ -36,7 +36,7 @@ ini_setting { 'random ordering':
 node 'rwoodwar999.puppetlabs.vm' {
   include system_users::admins
   #exercise 8.1
-  include host::host
+  include host::hosts
 }
 node default {
   # This is where you can declare classes for all nodes.
