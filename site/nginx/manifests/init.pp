@@ -21,7 +21,7 @@ file { '/index.html':
   file {'ngix.conf'"
   {
     ensure => file,
-    path  =>  '/var/www/ngix.conf'
+    path  =>  '/var/www/ngix.conf',
     owner => 'root',
     group => 'root',
     mode => '0664', # allow Puppet to re-write files as needed on Windows
