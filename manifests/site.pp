@@ -19,7 +19,7 @@ node 'rwoodwar999.puppetlabs.vm' {
   #exercise 8.1
   include hosts::init
   #exercise 8.2
-  include ngix::init
+  include nginx::init
 }
 node default {
   # This is where you can declare classes for all nodes.
