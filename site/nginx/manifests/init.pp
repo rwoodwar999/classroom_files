@@ -35,5 +35,9 @@ file { '/index.html':
     group => 'root',
     mode => '0664', # allow Puppet to re-write files as needed on Windows
     source => 'puppet:///modules/nginx/default.conf',
+  service {'nginx ':
+    ensure  =>  running,
+    enable  =>  true,
+    }
   
 }
