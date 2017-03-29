@@ -12,7 +12,7 @@ file { 'docroot':
 
 file { '/index.html':
   ensure => file,
-  path  =>  '/var/www/index.html'
+  path  =>  '/var/www/index.html',
   owner => 'root',
   group => 'root',
   mode => '0664', # allow Puppet to re-write files as needed on Windows
