@@ -6,7 +6,7 @@ class nginx {
 file { 'docroot':
     ensure => directory,
     path =>  '/var/www',
-    owner => '/root',
+    owner => 'root',
     group => 'root',
     }
 
