@@ -9,12 +9,7 @@
 # http://docs.puppetlabs.com/guides/language_guide.html#nodes for more on
 # node definitions.)
 
-## Active Configurations ##
 
-# PRIMARY FILEBUCKET
-# This configures puppet agent and puppet inspect to back up file contents when
-# they run. The Puppet Enterprise console needs this to display file contents
-# and differences.
 
 # Disable filebucket by default for all File resources:
 File { backup => false }
