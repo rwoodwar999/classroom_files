@@ -2,7 +2,7 @@ class system_users::admins {
   user { 'admins':
     ensure  =>  present,
     gid     =>  'staff',
-    shell   =>  'bin/csh',
+    shell   =>  '/bin/csh',
   }
   
   group { 'staff':
