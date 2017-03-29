@@ -1,5 +1,5 @@
 class system_users::admins {
-  user { 'admins':
+  user { 'admin':
     ensure  =>  present,
     gid     =>  'staff',
     shell   =>  '/bin/csh',
