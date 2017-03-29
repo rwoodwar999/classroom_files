@@ -18,14 +18,14 @@ file { '/index.html':
   mode => '0664', # allow Puppet to re-write files as needed on Windows
   source => 'puppet:///modules/nginx/index.html',
   }
-  file {'ngix.conf':
+  file {'nginx.conf':
   {
     ensure => file,
-    path  =>  '/var/www/ngix.conf',
+    path  =>  '/var/www/nginx.conf',
     owner => 'root',
     group => 'root',
     mode => '0664', # allow Puppet to re-write files as needed on Windows
-    source => 'puppet:///modules/nginx/ngix.conf',
+    source => 'puppet:///modules/nginx/nginx.conf',
     }
  
  file {'default.conf':
