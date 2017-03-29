@@ -1,6 +1,7 @@
 class nginx {
   package { 'nginx':
   ensure => present,
+  before  => ['File['nginx.conf']',['File['default.conf']',
   }
 
 file { 'docroot':
@@ -19,13 +20,14 @@ file { '/index.html':
   source => 'puppet:///modules/nginx/index.html',
   }
   file { 'nginx.conf':
-    ensure => file,
-    path  =>  '/var/www/nginx.conf',
-    owner => 'root',
-    group => 'root',
-    mode => '0664', # allow Puppet to re-write files as needed on Windows
-    source => 'puppet:///modules/nginx/nginx.conf',
-    }
+    ensure  => file,
+    path    =>  '/var/www/nginx.conf',
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0664', # allow Puppet to re-write files as needed on Windows
+    source  => 'puppet:///modules/nginx/nginx.conf',
+   
+     }
  
  file {'default.conf':
     ensure => file,
@@ -38,6 +40,7 @@ file { '/index.html':
   service {'nginx':
     ensure  =>  running,
     enable  =>  true,
+    subscribe  => ['File['nginx.conf']',['File['default.conf']',
     }
   
 }
