@@ -37,7 +37,10 @@ ini_setting { 'random ordering':
 # definition. If there are no other nodes in this file, classes declared here
 # will be included in every node's catalog, *in addition* to any classes
 # specified in the console for that node.
-
+# exercise 7.1
+node 'rwoodwar999.puppetlabs.vm' {
+  include system_users::admins
+}
 node default {
   # This is where you can declare classes for all nodes.
   # Example:
