@@ -15,6 +15,7 @@ class nginx {
       fail("Module ${module_name} is not supported on ${facts['os']['family']}")
     }
   }
+  $user = 'www'
   File {
     owner => $owner,
     group => $group,
@@ -28,17 +29,29 @@ class nginx {
   }
   file { "${docroot}/index.html":
     ensure => file,
-    source => 'puppet:///modules/nginx/index.html',
+    #source => 'puppet:///modules/nginx/index.html',
+    content => epp('nginx/index.html.epp'),
   }
   file { "${confdir}/nginx.conf":
     ensure => file,
-    source => "puppet:///modules/nginx/${facts['os']['family']}.conf",
+  #  source => "puppet:///modules/nginx/${facts['os']['family']}.conf",
+     content => epp('nginx/nginx.conf.epp',
+      {
+        user => $user,
+        logdir => $logdir,
+        confdir => $confdir,
+        blockdir => $blockdir,
+      }),
     require => Package[$package],
     notify => Service['nginx'],
   }
   file { "${blockdir}/default.conf":
     ensure => file,
-    source => "puppet:///modules/nginx/default-${facts['kernel']}.conf",
+   # source => "puppet:///modules/nginx/default-${facts['kernel']}.conf",
+    content => epp('nginx/default.conf.epp',{
+            docroot => $docroot,
+           }),
+
     require => Package[$package],
     notify => Service['nginx'],
   }
