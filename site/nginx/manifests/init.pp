@@ -46,8 +46,8 @@ class nginx {
   }
   
   service { 'nginx':
-    ensure => running,
-    enable => true,
+    ensure    => running,
+    enable    => true,
     subscribe => [ File['nginx.conf'], File['default.conf'] ],
   }
 }
