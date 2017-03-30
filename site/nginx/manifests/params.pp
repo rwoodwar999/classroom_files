@@ -1,4 +1,4 @@
-class nginx {
+class nginx::params {
   case $facts['os']['family'] {
     'redhat' : {
       $package  = 'nginx'
