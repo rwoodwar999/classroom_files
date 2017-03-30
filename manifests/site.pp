@@ -19,12 +19,12 @@ node 'rwoodwar999.puppetlabs.vm' {
   #exercise 8.1
   include hosts::init
   #exercise 8.2
-  #include nginx
+  include nginx
   #exercise 12.1
   #class nginx::vhost{ 'punch.puppetlabs.com':}
   #exercise 13.1
   class { 'nginx':
-    root => '/root',
+    highperf => 'false',
   }
 }
 node default {
