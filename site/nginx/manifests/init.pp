@@ -15,7 +15,7 @@ class nginx {
       fail("Module ${module_name} is not supported on ${facts['os']['family']}")
     }
   }
-  $user = 'www'
+ # $user = 'www'
   File {
     owner => $owner,
     group => $group,
