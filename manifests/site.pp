@@ -9,6 +9,7 @@ node 'josephoaks.puppetlabs.vm' {
   nginx::vhost { 'punch.puppetlabs.vm': }
   class { 'nginx':
     highperf => false,
+    root     => '/var/www/html'
   }
 }
 
