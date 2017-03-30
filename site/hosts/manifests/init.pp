@@ -7,4 +7,5 @@ class hosts {
   host { 'punch.puppetlabs.vm':
     ensure => present,
     ip     => '127.0.0.1',
+  }
 }
