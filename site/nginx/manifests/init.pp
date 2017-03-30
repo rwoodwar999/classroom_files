@@ -1,10 +1,14 @@
-class nginx {
+class nginx (
+  $root     = undef,
+  $highperf = true,
+){
   case $facts['os']['family'] {
     'redhat' : {
       $package  = 'nginx'
       $owner    = 'root'
       $group    = 'root'
-      $docroot  = '/var/www'
+      #$docroot  = '/var/www'
+      $defdocroot = '/var/www'
       $confdir  = '/etc/nginx'
       $blockdir = '/etc/nginx/conf.d'
       $logdir   = '/var/log/nginx'
@@ -23,6 +27,11 @@ class nginx {
     owner  => $owner,
     group  => $group,
     mode   => '0644',
+  }
+  
+  $docroot = $root ? {
+    undef   = $defdocroot,
+    default = $root,
   }
   
   $user = $facts['os']['family'] ? {
@@ -49,7 +58,8 @@ class nginx {
         user     => $user,
         confdir  => $confdir,
         blockdir => $blockdir,
-        logdir   => $logdir
+        logdir   => $logdir,
+        highperf => $highperf,
       }),
   }
   
