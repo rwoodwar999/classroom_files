@@ -26,7 +26,7 @@ class nginx {
   }
   
   $user = $facts['os']['family'] ? {
-    'redhat' => 'www',
+    'redhat' => 'nginx',
     'debian' => 'nobody',
     default  => 'www',
   }
