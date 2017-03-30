@@ -20,6 +20,8 @@ node 'rwoodwar999.puppetlabs.vm' {
   include hosts::init
   #exercise 8.2
   include nginx
+  #exercise 12.1
+  #class nginx::vhost{ 'punch.puppetlabs.com':}
 }
 node default {
   # This is where you can declare classes for all nodes.
