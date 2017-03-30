@@ -1,5 +1,5 @@
 class nginx (
-String $root = undef,
+$root = undef,
 Boolean $highperf = true,
 ) {
 case $facts['os']['family'] {
