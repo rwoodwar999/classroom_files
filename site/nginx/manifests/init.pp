@@ -1,4 +1,14 @@
-class nginx {
+class nginx (
+  $package  = $nginx::params::package
+  $owner    = $nginx::params::owner,
+  $group    = $nginx::params::group,
+  $docroot  = $nginx::params::docroot,
+  $confdir  = $nginx::params::confdir,
+  $blockdir = $nginx::params::blockdir,
+  $logdir   = $nginx::params::logdir,
+  $user     = $nginx::params::user,
+) inherits nginx::params {
+  
   package { $package:
     ensure => present,
   }
@@ -17,13 +27,11 @@ class nginx {
   
   file { 'index.html':
     path   => "${docroot}/index.html",    
-    #source => 'puppet:///modules/nginx/index.html',
     content => epp('nginx/index.html.epp'),
   }
   
   file { 'nginx.conf':
     path   => "${confdir}/nginx.conf",
-    #source => 'puppet:///modules/nginx/nginx.conf',
     content => epp('nginx/nginx.conf.epp', {
         user     => $user,
         confdir  => $confdir,
@@ -35,7 +43,6 @@ class nginx {
   
   file { 'default.conf':
     path   => "${blockdir}/default.conf",
-    #source => 'puppet:///modules/nginx/default.conf',
     content => epp('nginx/default.conf.epp', {
         docroot => $docroot,
       }),
