@@ -24,7 +24,7 @@ node 'rwoodwar999.puppetlabs.vm' {
   #class nginx::vhost{ 'punch.puppetlabs.com':}
   #exercise 13.1
   class { 'nginx':
-    highperf => 'false',
+    highperf => false,
   }
 }
 node default {
