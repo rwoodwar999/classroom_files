@@ -30,5 +30,6 @@ define nginx::vhost (
   
   file { $docroot:
     ensure => directory,
+    before => File["${docroot}/index.html"],
   }
 }
