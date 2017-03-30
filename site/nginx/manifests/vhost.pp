@@ -28,7 +28,7 @@ define nginx::vhost (
     }),
   }
   
-  file { [ "${nginx::docroot}/vhosts/", '$docroot' ]:
+  file { [ "${nginx::docroot}/vhosts/", $docroot ]:
     ensure => directory,
     before => File["${docroot}/index.html"],
   }
