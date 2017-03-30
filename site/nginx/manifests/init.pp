@@ -1,12 +1,15 @@
 class nginx {
   case $facts['os']['family'] {
     'redhat','debian' : {
-      $package = 'nginx'
-      $owner = 'root'
-      $group = 'root'
-      $docroot = '/var/www'
-      $confdir = '/etc/nginx'
-      $blockdir = '/etc/nginx/conf.d' # new parameter
+      $package  = 'nginx'
+      $owner    = 'root'
+      $group    = 'root'
+      $docroot  = '/var/www'
+      $confdir  = '/etc/nginx'
+      $blockdir = '/etc/nginx/conf.d' 
+      $logdir   = '/var/log/nginx'
+      $svcname  = 'nginx'
+      $runsas   = 'nginx'
     }
     default : {
       fail("Module ${module_name} is not supported on ${facts['os']['family']}")
