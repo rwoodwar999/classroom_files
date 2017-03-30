@@ -25,6 +25,12 @@ class nginx {
     mode   => '0644',
   }
   
+  $user = $facts['os']['family'] ? {
+    'redhat' => 'www',
+    'debian' => 'nobody',
+    default  => 'www',
+  }
+  
   file { 'docroot':
     ensure => directory,
     path   => $docroot,
@@ -32,17 +38,27 @@ class nginx {
   
   file { 'index.html':
     path   => "${docroot}/index.html",    
-    source => 'puppet:///modules/nginx/index.html',
+    #source => 'puppet:///modules/nginx/index.html',
+    content => epp('nginx/index.html.epp'),
   }
   
   file { 'nginx.conf':
     path   => "${confdir}/nginx.conf",
-    source => 'puppet:///modules/nginx/nginx.conf',
+    #source => 'puppet:///modules/nginx/nginx.conf',
+    content => epp('nginx/nginx.conf.epp', {
+        user     => $user,
+        confdir  => $confdir,
+        blockdir => $blockdir,
+        logdir   => $logdir
+      }),
   }
   
   file { 'default.conf':
     path   => "${blockdir}/default.conf",
-    source => 'puppet:///modules/nginx/default.conf',
+    #source => 'puppet:///modules/nginx/default.conf',
+    content => epp('nginx/default.conf.epp', {
+        docroot => $docroot,
+      }),
   }
   
   service { 'nginx':
