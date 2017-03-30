@@ -1,4 +1,4 @@
-class nginx::vhost (
+define nginx::vhost (
   $port       = '80',
   $docroot    = "${nginx::docroot}/vhosts/${title}",
   $servername = $title,
@@ -13,7 +13,7 @@ class nginx::vhost (
   
   file { "nginx-vhost-${title}":
     path    => "${nginx::blockdir}/${title}.conf",
-    content => epp(nginx/vhost.conf.epp', {
+    content => epp('nginx/vhost.conf.epp', {
       port       => $port,
       docroot    => $docroot,
       title      => $title,
