@@ -56,32 +56,21 @@ servername => $facts['fqdn'],
 file { "${docroot}/vhosts":
 ensure => directory,
 }
-
-  file { "${confdir}/nginx.conf":
-    ensure => file,
-  #  source => "puppet:///modules/nginx/${facts['os']['family']}.conf",
-     content => epp('nginx/nginx.conf.epp',
-      {
-        user => $user,
-        logdir => $logdir,
-        confdir => $confdir,
-        blockdir => $blockdir,
-      }),
-    require => Package[$package],
-    notify => Service['nginx'],
-  }
-  file { "${blockdir}/default.conf":
-    ensure => file,
-   # source => "puppet:///modules/nginx/default-${facts['kernel']}.conf",
-    content => epp('nginx/default.conf.epp',{
-            docroot => $docroot,
-           }),
-
-    require => Package[$package],
-    notify => Service['nginx'],
-  }
-  service { 'nginx':
-    ensure => running,
-    enable => true,
-  }
+file { "${confdir}/nginx.conf":
+ensure => file,
+content => epp('nginx/nginx.conf.epp',
+{
+user => $user,
+logdir => $logdir,
+confdir => $confdir,
+blockdir => $blockdir,
+highperf => $highperf,
+}),
+require => Package[$package],
+notify => Service['nginx'],
+}
+service { 'nginx':
+ensure => running,
+enable => true,
+}
 }
