@@ -15,13 +15,12 @@ File {
   file { "nginx-vhost-${title}":
     ensure => file,
     path => "${nginx::blockdir}/${title}.conf",
-    content => epp('nginx/vhost.conf.epp',
-  {
-  port => $port,
-  docroot => $docroot,
-  servername => $servername,
-  title => $title,
-  }),
+    content => epp('nginx/vhost.conf.epp',  {
+     port => $port,
+     docroot => $docroot,
+     servername => $servername,
+     title => $title,
+    }),
   notify => Service['nginx'],
   }
   file { $docroot:
