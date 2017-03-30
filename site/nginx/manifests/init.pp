@@ -30,8 +30,8 @@ class nginx (
   }
   
   $docroot = $root ? {
-    undef   = $defdocroot,
-    default = $root,
+    undef   => $defdocroot,
+    default => $root,
   }
   
   $user = $facts['os']['family'] ? {
