@@ -1,4 +1,7 @@
-class nginx {
+class nginx (
+  String $root = undef,
+  Boolean $highperf = true,
+  ) {
   case $facts['os']['family'] {
     'redhat','debian' : {
       $package  = 'nginx'
