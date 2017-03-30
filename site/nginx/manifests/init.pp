@@ -1,23 +1,4 @@
-class nginx (
-  $root     = undef,
-  $highperf = true,
-){
-  case $facts['os']['family'] {
-    'redhat' : {
-      $package  = 'nginx'
-      $owner    = 'root'
-      $group    = 'root'
-      #$docroot  = '/var/www'
-      $defdocroot = '/var/www'
-      $confdir  = '/etc/nginx'
-      $blockdir = '/etc/nginx/conf.d'
-      $logdir   = '/var/log/nginx'
-    }
-    default : {
-      fail("${module_name} is not supported on ${facts['os']['family']}")
-    }
-  }
-
+class nginx {
   package { $package:
     ensure => present,
   }
@@ -28,18 +9,7 @@ class nginx (
     group  => $group,
     mode   => '0644',
   }
-  
-  $docroot = $root ? {
-    undef   => $defdocroot,
-    default => $root,
-  }
-  
-  $user = $facts['os']['family'] ? {
-    'redhat' => 'nginx',
-    'debian' => 'nobody',
-    default  => 'www',
-  }
-  
+
   file { 'docroot':
     ensure => directory,
     path   => $docroot,
