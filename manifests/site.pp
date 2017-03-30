@@ -8,7 +8,7 @@ node 'josephoaks.puppetlabs.vm' {
   # Exercise 8.2
   include nginx
   # Exercise 12.1
-  class nginx::vhost { 'punch.puppetlabs.vm': }
+  nginx::vhost { 'punch.puppetlabs.vm': }
 }
 
 node default {
